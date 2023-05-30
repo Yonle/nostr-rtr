@@ -1,0 +1,27 @@
+nostr-rtr
+=========
+
+A simple nostr relay-to-relay bridge.
+
+So what was basically this thing doing?
+
+Relay 1   <--- Events ---
+  |                     |
+  --- Events --->   Relay 2
+
+Syncing all events including realtime to two (or more) relays.
+
+
+First time using
+================
+Please run `npm install`.
+
+
+So how to use this?
+===================
+
+Say, you would like to relay wss://relay1.example.com with your relay that were listening at localhost. 
+
+~/nostr-rtr $ node rtr.js wss://relay1.example.com ws://localhost:8080
+
+And now feel free to browse, or post stuffs to wss://localhost:8080.
