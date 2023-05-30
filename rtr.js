@@ -50,7 +50,7 @@ function newrelay(addr, eose = false) {
       relay.removeAllListeners(i);
     }
 
-    newrelay(addr, eose);
+    newrelay(addr);
   });
 
   relays.add(relay);
