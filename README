@@ -22,6 +22,10 @@ So how to use this?
 
 Say, you would like to relay wss://relay1.example.com with your relay that were listening at localhost. 
 
-~/nostr-rtr $ node rtr.js wss://relay1.example.com ws://localhost:8080
+  ~/nostr-rtr $ node rtr.js wss://relay1.example.com ws://localhost:8080
 
 And now feel free to browse, or post stuffs to wss://localhost:8080.
+
+You may also like to disable waiting of EOSE. However this was discouraged:
+
+  ~/nostr-rtr $ NO_WAIT_EOSE=true node rtr.js wss://relay1.example.com ws://localhost:8080

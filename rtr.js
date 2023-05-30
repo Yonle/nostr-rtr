@@ -34,7 +34,7 @@ function newrelay(addr, eose = false) {
 
     if (data[0] === "EOSE" && !eose) eose = true;
 
-    if (!eose) return;
+    if (!process.env.NO_WAIT_EOSE && !eose) return;
     if (data[0] !== "EVENT") return;
     relays.broadcast(relay, JSON.stringify(["EVENT", data[2]]));
   });
