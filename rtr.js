@@ -29,7 +29,12 @@ function newrelay(addr, eose = false) {
   });
 
   relay.on('message', data => {
-    data = JSON.parse(data);
+    try {
+      data = JSON.parse(data);
+    } catch (error) {
+      return console.error(error);
+    }
+
     console.log(relay.addr, JSON.stringify(data));
 
     if (data[0] === "EOSE" && !eose) eose = true;
