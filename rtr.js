@@ -35,17 +35,16 @@ function newrelay(addr, eose = false) {
       return console.error(error);
     }
 
-    console.log("--- from", relay.addr + ":", JSON.stringify(data));
-
     if (data[0] === "EOSE" && !eose) eose = true;
 
     if (!process.env.NO_WAIT_EOSE && !eose) return;
+    console.log("--- from", relay.addr + ":", JSON.stringify(data));
     if (data[0] !== "EVENT") return;
     relays.broadcast(relay, JSON.stringify(["EVENT", data[2]]));
     console.log(`------ event from ${relay.addr} has been transmitted.`)
   });
 
-  relay.on('error', console.error);
+  relay.on('error', _ => console.error(relay.addr, _));
   relay.on('close', _ => {
     for (i in ['open', 'message', 'error', 'close']) {
       relay.removeAllListeners(i);
