@@ -35,14 +35,14 @@ function newrelay(addr, eose = false) {
       return console.error(error);
     }
 
-    console.log(eose, relay.addr, JSON.stringify(data));
+    console.log("--- from", relay.addr + ":", JSON.stringify(data));
 
     if (data[0] === "EOSE" && !eose) eose = true;
 
     if (!process.env.NO_WAIT_EOSE && !eose) return;
     if (data[0] !== "EVENT") return;
     relays.broadcast(relay, JSON.stringify(["EVENT", data[2]]));
-    console.log("------------- transmitted")
+    console.log(`------ event from ${relay.addr} has been transmitted.`)
   });
 
   relay.on('error', console.error);
